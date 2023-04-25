@@ -1,0 +1,17 @@
+main: addi $2 $0 5
+      syscall
+      add $8 $0 $2
+      addi $7 $0 1
+        
+     addi $9 $8 -1
+     mul $10 $8 $9
+     j decai
+           
+ decai: addi $9 $9 -1 
+        mul $10 $10 $9
+        bne $9 $7 decai
+        j imprime
+        
+imprime: add $4 $0 $10
+         addi $2 $0 1 
+         syscall                        

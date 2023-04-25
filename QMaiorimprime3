@@ -1,0 +1,116 @@
+main: addi $2 $0 5
+      syscall
+      add $8 $0 $2
+      addi $2 $0 5
+      syscall
+      add $9 $0 $2
+      addi $2 $0 5
+      syscall
+      add $10 $0 $2
+      
+      slt $15 $8 $9 
+      bne $15 $0 verifica1
+      j verifica2
+      
+ verifica1: slt $16 $9 $10
+            bne $16 $0 imprime5
+            j verifica1com
+ 
+ verifica1com: slt $19 $8 $10
+               bne $19 $0 imprime1
+               j imprime2         
+ 
+ verifica2: slt $17 $8 $10
+            bne $17 $0 imprime6 #caso o que esteja em $10 seja maior
+            j verifica2com
+            
+ verifica2com: slt $17 $9 $10
+               bne $17 $0 imprime3
+               j imprime4
+                  
+ 
+ imprime1: add $4 $0 $9
+           addi $2 $0 1
+           syscall
+           add $4 $0 ' '
+           addi $2 $0 11
+           syscall
+           add $4 $0 $10
+           addi $2 $0 1
+           syscall
+           add $4 $0 ' '
+           addi $2 $0 11
+           syscall
+           add $4 $0 $8
+           addi $2 $0 1
+           syscall
+           addi $2 $0 10
+           syscall
+           
+ imprime2: add $4 $0 $9
+           addi $2 $0 1
+           syscall
+           add $4 $0 ' '
+           addi $2 $0 11
+           syscall 
+           add $4 $0 $8
+           addi $2 $0 1
+           syscall
+           add $4 $0 ' '
+           addi $2 $0 11
+           syscall         
+           add $4 $0 $10
+           addi $2 $0 1
+           syscall
+           addi $2 $0 10
+           syscall 
+            
+ imprime3: add $4 $0 $8
+           addi $2 $0 1
+           syscall
+           add $4 $0 $10
+           addi $2 $0 1
+           syscall
+           add $4 $0 $9 
+           addi $2 $0 1
+           syscall 
+           addi $2 $0 10
+           syscall     
+ 
+ imprime4: add $4 $0 $8
+           addi $2 $0 1
+           syscall
+           add $4 $0 $9
+           addi $2 $0 1
+           syscall
+           add $4 $0 $10
+           addi $2 $0 1
+           syscall
+           addi $2 $0 10
+           syscall
+ 
+ imprime5: add $4 $0 $10 
+           addi $2 $0 1
+           syscall
+           add $4 $0 $9
+           addi $2 $0 1
+           syscall
+           add $4 $0 $8
+           addi $2 $0 1
+           syscall
+           addi $2 $0 10
+           syscall
+           
+ imprime6: add $4 $0 $10
+           addi $2 $0 1
+           syscall 
+           add $4 $0 $8
+           addi $2 $0 1
+           syscall
+           add $4 $0 $9  
+           addi $2 $0 1
+           syscall
+           addi $2 $0 10
+           syscall          
+
+            

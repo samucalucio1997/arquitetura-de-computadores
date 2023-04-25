@@ -1,0 +1,44 @@
+main: addi $2 $0 5 
+      syscall
+      add $8 $0 $2
+      addi $2 $0 5 
+      syscall
+      add $9 $0 $2
+      addi $2 $0 5 
+      syscall
+      add $17 $0 $2
+      
+      addi $25 $0 3
+      add $10 $17 $9
+      add $10 $10 $8
+      
+      div $10 $25
+      mfhi $7 
+      mflo $11
+      addi $12 $0 10
+      
+      mul $7 $12 $7
+      addi $15 $0 5
+      div $7 $25
+      mflo $13
+      slt $14 $13 $15
+      bne $14 $0 condicao1
+      j condicao2
+      
+ condicao1: add $4 $0 $11
+            addi $2 $0 1
+            syscall
+            addi $4 $0 ','
+            addi $2 $0 11
+            syscall     
+            add $4 $0 $13
+            addi $2 $0 1
+            syscall
+            addi $2 $0 10
+            syscall
+ 
+ condicao2: addi $11 $11 1
+            add $4 $0 $11
+            addi $2 $0 1
+            syscall         
+                

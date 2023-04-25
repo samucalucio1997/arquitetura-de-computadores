@@ -1,0 +1,5 @@
+main: addi $2 $0 12
+      syscall
+      addi $4 $2 -32
+      addi $2 $0 11
+      syscall

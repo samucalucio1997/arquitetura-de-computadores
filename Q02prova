@@ -1,0 +1,38 @@
+main: addi $2 $0 5
+      syscall
+      add $8 $0 $2
+      
+      addi $9 $0 300 
+      addi $10 $0 7 
+      addi $11 $0 3 
+      addi $12 $0 100
+      
+      div $8 $9
+      mfhi $15
+      beq $15 $0 bissexto
+      j verifica1 #nao divisivel por 300
+      
+verifica1: div $8 $10 
+           mfhi $13
+           beq $13 $0 bissexto
+           j verifica2
+           
+ verifica2: div $8 $11
+            mfhi $14
+            beq $14 $0 ver100
+            j naobissexto
+                                
+   ver100: div $8 $12
+           mfhi $16
+           beq $16 $0 naobissexto
+           j bissexto   
+      
+ bissexto: addi $4 $0 'b'
+           addi $2 $0 11
+           syscall
+           addi $2 $0 10
+           syscall     
+           
+naobissexto: addi $4 $0 'n'
+             addi $2 $0 11
+             syscall         

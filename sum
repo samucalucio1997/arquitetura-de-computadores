@@ -1,0 +1,17 @@
+main: addi $2 $0 5
+      syscall 
+      add $8 $0 $2
+      
+      add $9 $0 $0
+      addi $10 $0 1
+     
+   sum: add $9 $9 $10
+        beq $10 $8 saimpre
+        addi $10 $10 1
+        j sum
+        
+saimpre: add $4 $0 $9
+         addi $2 $0 1
+         syscall
+         addi $2 $0 10
+         syscall               

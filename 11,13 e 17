@@ -1,0 +1,63 @@
+main: addi $2 $0 5 
+      syscall
+      add $8 $0 $2
+      
+      addi $9 $0 11
+      addi $10 $0 13
+      addi $11 $0 17
+      
+      add $12 $0 $8
+      add $14 $0 $8
+      add $17 $0 $8
+      
+increme11: addi $12 $12 1
+           j joga11
+        
+  joga11: div $12 $9
+          mfhi $13 
+          beq $13 $0 imprime
+          j increme11
+      
+ imprime: add $4 $0 $12
+          addi $2 $0 1
+          syscall
+          addi $4 $0 ' '
+          addi $2 $0 11
+          syscall
+          j joga13     
+     #######################  
+   increm13:addi $14 $14 1
+            j joga13
+              
+   joga13: div $14 $10
+           mfhi $15
+           beq $15 $0 imprime1
+           j increm13
+           
+   imprime1: add $4 $0 $14
+             addi $2 $0 1
+             syscall
+             addi $4 $0 ' '
+             addi $2 $0 11
+             syscall
+             j joga17
+    ###################### 
+    increm17: addi $17 $17 1
+              j joga17
+              
+     joga17: div $17 $11 
+             mfhi $18
+             beq $18 $0 imprime2
+             j increm17
+             
+    imprime2:add $4 $0 $17
+             addi $2 $0 1
+             syscall
+             addi $4 $0 ' '
+             addi $2 $0 11
+             syscall
+             j fim  
+             
+     fim:addi $2 $0 10
+         syscall                                                                                                                            
+                            

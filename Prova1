@@ -1,0 +1,22 @@
+main: addi $9 $0 2
+      addi $12 $0 0
+  novo:addi $2 $0 5
+       syscall
+       slt $11 $2 $0
+       bne $11 $0 termina
+       j principal
+     
+ principal:add $8 $0 $2
+           div $8 $9
+           mfhi $10
+           beq $10 $0 soma
+           j novo
+      
+ soma: add $12 $12 $8
+       j novo
+        
+ termina: add $4 $0 $12
+          addi $2 $0 1
+          syscall
+          addi $2 $0 10
+          syscall             

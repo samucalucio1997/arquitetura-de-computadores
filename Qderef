@@ -1,0 +1,27 @@
+main: addi $2 $0 5 
+      syscall
+      add $8 $0 $2 # multiplos de ...
+      addi $2 $0 5
+      syscall
+      add $9 $0 $2
+      
+      
+  laco: addi $9 $9 -1 
+        bne $9 $0 conc  
+        j final 
+      
+ conc: div $9 $8
+       mfhi $11
+       beq $11 $0 imprimela
+       j laco       
+           
+ imprimela: add $4 $0 $9
+            addi $2 $0 1
+            syscall 
+            addi $4 $0 ' '
+            addi $2 $0 11
+            syscall 
+            j laco
+            
+    final:addi $2 $0 10
+          syscall                                          

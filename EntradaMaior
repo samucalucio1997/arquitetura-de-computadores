@@ -1,0 +1,38 @@
+main: addi $2 $0 5
+      syscall
+      add $8 $0 $2
+      
+      addi $2 $0 5
+      syscall
+      add $9 $0 $2
+      addi $11 $0 1
+      addi $8 $8 -1
+            
+  lacover: addi $2 $0 5
+           syscall
+           slt $15 $9 $2
+           beq $9 $2 adiciona 
+           bne $15 $0 veri
+           addi $8 $8 -1
+           beq $8 $0 final
+           j lacover
+           
+ adiciona: addi $11 $11 1
+           addi $8 $8 -1 
+           beq $8 $0 final
+           j lacover        
+           
+     veri: add $9 $0 $2
+           addi $8 $8 -1
+           beq $8 $0 final
+           j lacover
+           
+    final: add $4 $0 $11
+           addi $2 $0 1
+           syscall
+           addi $4 $0 ' '
+           addi $2 $0 11
+           syscall
+           add $4 $0 $9
+           addi $2 $0 1
+           syscall                                       

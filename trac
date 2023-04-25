@@ -1,0 +1,25 @@
+main: addi $2 $0 5 
+      syscall
+      add $8 $0 $2
+      addi $2 $0 5
+      syscall
+      add $7 $0 $2
+      addi $2 $0 5
+      syscall
+      sll $9 $8 1
+      add $9 $9 $8
+      sll $6 $7 3
+      add $6 $6 $7
+      sll $11 $2 4
+      sub $11 $11 $2
+      add $4 $6 $9
+      add $4 $4 $11
+      
+      addi $9 $0 3
+      addi $6 $9 9
+      addi $6 $6 15
+      div $4 $6
+      mflo $4
+      addi $2 $0 1
+      syscall
+      

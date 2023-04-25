@@ -1,0 +1,32 @@
+main: addi $2 $0 5
+      syscall
+      add $8 $0 $2 # limite do laco(até onde vai)
+      addi $2 $0 5 
+      syscall
+      add $9 $0 $2 # multiplos dele
+      
+         add $25 $0 $9
+         addi $8 $0 1
+      
+conmulti: div $25 $9
+          mfhi $11
+          beq $11 $0 imprime
+          j laco
+          
+imprime: add $4 $0 $25
+         addi $2 $0 1
+         syscall
+         addi $4 $0 ' '
+         addi $2 $0 11
+         syscall
+         j laco
+         
+  laco: addi $25 $25 1
+          beq $25 $8 fim
+          j conmulti       
+  
+  fim: addi $2 $0 10
+       syscall                                               
+     
+      
+  

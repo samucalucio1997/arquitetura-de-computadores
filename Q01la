@@ -1,0 +1,26 @@
+main: addi $7 $0 3
+      add $11 $0 $7 
+      addi $12 $0 0
+      addi $15 $0 10
+    
+ 
+               
+laca: div $11 $7
+      mfhi $9
+      bne $9 $0 volta
+      
+      
+ volta: add $4 $0 $11
+        addi $2 $0 1
+        syscall
+         add $4 $0 ' '
+        addi $2 $0 11
+        syscall
+        addi $11 $11 3
+        addi $12 $12 1
+        beq $12 $15 sai
+        j laca   
+        
+        
+  sai:add $2 $0 10
+      syscall    
