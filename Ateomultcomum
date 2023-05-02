@@ -1,0 +1,29 @@
+main: addi $2 $0 5
+      syscall
+      add $8 $0 $2 
+      addi $8 $8 1
+      add $11 $0 $8
+      
+      addi $9 $0 11
+      addi $10 $0 13
+      
+ laco:div $8 $9
+      mfhi $12
+      div $11 $10
+      mfhi $13
+      beq $13 $12 ver2
+      addi $8 $8 1
+      addi $11 $11 1
+      j laco
+      
+ ver2: beq $13 $0 imprime
+       j laco
+       
+ imprime: beq $8 $11 imprimever
+          j laco
+          
+ imprimever: add $4 $0 $8
+             addi $2 $0 1
+             syscall
+             addi $2 $0 10
+             syscall                  
