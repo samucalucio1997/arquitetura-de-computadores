@@ -1,0 +1,87 @@
+main:addi $2 $0 5
+     syscall
+     add $8 $0 $2
+     addi $2 $0 5
+     syscall
+     add $9 $0 $2
+     addi $2 $0 5
+     syscall
+     add $10 $0 $2
+     
+     addi $11 $0 2
+     addi $12 $0 8
+     addi $18 $0 'B'
+     
+     
+     
+     beq $9 $11 veridiafev
+     jal verificanormal
+     addi $2 $0 10
+     syscall
+
+##############################      
+ veridiafev: jal bissexto   
+             beq $17 $18 ver2
+             j nbise
+        ver2: addi $19 $0 29
+              slt $19 $8 $19
+              bne $19 $0 imprimefev
+              j naoe
+   imprimefev:addi $4 $0 'S'
+              addi $2 $0 11
+              syscall
+              addi $2 $0 10
+              syscall
+     naoe: addi $4 $0 'N'                       
+           addi $2 $0 11
+           syscall
+           addi $2 $0 10
+           syscall
+     nbise:addi $19 $0 30
+           slt $19 $8 $19
+           bne $19 $0 imprimefev
+           j naoe
+       
+##############################          
+             
+ bissexto:addi $13 $0 10
+          addi $14 $0 100 
+           div $10 $13
+           mfhi $15
+           beq $15 $0 ver1
+           j bis2
+      ver1:div $10 $14
+           mfhi $16
+           beq $16 $0 atri
+           j bis2
+           addi $17 $0 'N'
+           jr $31        
+       atri:addi $17 $0 'B'  
+            jr $31
+       bis2:addi $6 $0 4
+            div $10 $6
+            mfhi $16
+            beq $16 $0 atri
+            j no
+         no:addi $17 $0 'N'
+            jr $31             
+             
+                                 
+                                                     
+ verificanormal: div $9 $12
+                 mfhi $20 
+                 mflo $21 
+                 add $20 $20 $21
+                 andi $20 $20 1 
+                 beq $20 $0 verdia30
+                 j verdia31
+        verdia30:addi $19 $0 31
+                 slt $19 $8 $19
+                 bne $19 $0 imprimefev
+                 j naoe       
+        verdia31:addi $19 $0 32
+                 slt $19 $8 $19
+                 bne $19 $0 imprimefev         
+                 j naoe                                                                                            
+                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                                                 
