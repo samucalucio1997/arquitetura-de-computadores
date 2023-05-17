@@ -1,0 +1,50 @@
+.data
+.word 0,0,0,0,0,0
+
+.text
+main: lui $20 0x1001
+      addi $8 $0 0
+      addi $9 $0 6
+      addi $12 $0 0
+      
+      addi $2 $0 5
+      syscall
+      add $10 $0 $2
+      
+      addi $2 $0 5
+      syscall
+      add $11 $0 $2
+      
+   for:beq $9 $8 sai
+       
+       addi $2 $0 5
+       syscall
+       sw $2 0($20)  
+       
+       addi $20 $20 4
+       addi $8 $8 1
+       j for
+       
+   sai: addi $8 $0 0
+        addi $9 $0 6
+        lui $13 0x1001 
+   for1:beq $8 $9 sai1
+        
+        lw $15 0($13)
+        beq $8 $10 sum
+        beq $8 $11 sum
+        j normal
+    sum:add $12 $12 $11   
+        
+ normal:addi $13 $13 4
+        addi $8 $8 1
+        j for1
+   sai1:add $4 $0 $12     
+        addi $2 $0 1
+        syscall  
+       
+        
+             
+       
+               
+                   
