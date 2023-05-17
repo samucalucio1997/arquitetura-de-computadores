@@ -1,0 +1,39 @@
+.data
+.word 1,0,5,-2,-5,7
+
+.text
+main: addi $8 $0 0
+      addi $10 $0 1
+      addi $9 $0 3
+      addi $4 $0 0
+      lui $20 0x1001
+  for:beq $9 $8 sai
+  
+      beq $8 $0 imprime
+      beq $8 $10 imprime
+      
+      addi $20 $20 4
+      addi $8 $8 1
+      j for
+      
+  imprime: lw $11 0($20)
+           add $4 $0 $11 
+           addi $2 $0 1
+           syscall
+           
+    normal:addi $4 $0 '\n'
+           addi $2 $0 11
+           syscall 
+           addi $8 $8 1
+           addi $20 $20 4
+           j for
+
+  sai: lw $11 0($20)
+       add $4 $0 $11   
+       addi $2 $0 1
+       syscall
+       addi $2 $0 10
+       syscall                                                                             
+          
+      
+                          
