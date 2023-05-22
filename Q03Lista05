@@ -34,7 +34,7 @@ main: lui $20 0x1001
         beq $8 $10 sum
         beq $8 $11 sum
         j normal
-    sum:add $12 $12 $11   
+    sum:add $12 $12 $15   
         
  normal:addi $13 $13 4
         addi $8 $8 1

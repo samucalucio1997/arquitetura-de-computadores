@@ -1,0 +1,57 @@
+.data
+.word 0,0,0,0,0,0,0,0,0,0
+
+.text
+main: addi $8 $0 0
+      addi $9 $0 10
+      lui $20 0x1001 
+  for: beq $8 $9 sai   
+       
+       addi $2 $0 5
+       syscall
+       sw $2 0($20) 
+       
+       addi $20 $20 4
+       addi $8 $8 1
+       j for
+  sai: addi $8 $0 0
+       addi $9 $0 10
+       lui $25 0x1001
+       lw $15 0($25)#menor
+       lw $16 0($25)#maior
+       addi $25 $25 4
+       addi $8 $8 1
+       lw $13 0($25)#comparação
+ for1: beq $8 $9 sai1
+ 
+       slt $14 $15 $13#Se $15 < $13,então $14 = 1
+       bne $14 $0 testM#vai verificar se é maior do que o maior
+       j atriM
+       
+ atriM: add $15 $0 $13 
+        j incre
+       
+ testM:slt $14 $16 $13#Se $16 < $13, então $14=1
+       bne $14 $0 atri
+       j incre
+       
+   atri: add $16 $0 $13         
+          
+   incre: addi $25 $25 4
+          addi $8 $8 1 
+          lw $13 0($25)
+          j for1     
+ sai1: add $4 $0 $15
+       addi $2 $0 1
+       syscall
+       addi $4 $0 '\n'
+       addi $2 $0 11
+       syscall
+       add $4 $0 $16
+       addi $2 $0 1
+       syscall        
+        
+                                   
+       
+               
+       

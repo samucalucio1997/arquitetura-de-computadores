@@ -1,0 +1,78 @@
+.data 
+  ar1:  
+      .align 2
+      .space 40
+  ar2:
+      .align 2
+      .space 40
+.text
+main: add $8 $0 0
+     add $9 $0 10
+ for:beq $8 $9 sai
+     
+     addi $2 $0 5
+     syscall
+     sw $2 ar1($25)
+     
+     addi $25 $25 4
+     addi $8 $8 1
+     j for
+     
+ sai:addi $8 $0 0
+     addi $9 $0 10
+     add $16 $0 $8
+     add $17 $0 $9
+     addi $25 $0 0
+     addi $19 $0 0
+ for1:beq $16 $17 sai1
+      lw $10 ar1($25)
+      addi $14 $25 4
+      addi $8 $16 1
+    
+  for2: beq $8 $9 sai2    
+        addi $25 $25 4
+        addi $8 $8 1 
+        lw $13 ar1($25)
+        beq $10 $13 impri
+        jal alocaaux
+        j for2    
+  impri:add $4 $0 $10
+        addi $2 $0 1
+        syscall
+        addi $4 $0 '\n'
+        addi $2 $0 11
+        syscall
+        j incre
+        
+   sai2:add $8 $0 $0 
+        j incre                   
+          
+ incre: add $25 $0 $14
+        addi $16 $16 1
+        j for1 
+        
+ alocaaux: sw $10 ar2($19)
+           addi $19 $19 4
+           jr $31                 
+           
+ sai1: addi $4 $0 '='
+       addi $2 $0 11
+       syscall 
+       addi $8 $0 0
+       addi $9 $0 10
+       addi $19 $0 0
+  forf:beq $9 $8 fim
+       
+       lw $4 ar2($19)
+       beq $4 $0 fim   
+         addi $2 $0 1
+         syscall
+         addi $4 $0 '\n'
+         addi $2 $0 11
+         syscall
+       
+       addi $19 $19 4
+       addi $8 $8 1                  
+   
+  fim: addi $2 $0 10
+       syscall            
