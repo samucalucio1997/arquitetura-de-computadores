@@ -21,7 +21,7 @@ main: addi $10 $0 0
   forf:beq $8 $10 sai1   
        lw $4 ar1($25)
        jal eprimo 
-       beq $16 $13 imprime
+       bne $16 $13 imprime
        j fal
 imprime: add $4 $0 $4 
          addi $2 $0 1
