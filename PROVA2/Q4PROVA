@@ -1,0 +1,99 @@
+main:addi $2 $0 5
+     syscall
+     add $8 $0 $2#dia
+     srl $23 $8 31
+     bne $23 $0 naoe
+     addi $2 $0 5
+     syscall
+     add $9 $0 $2#mes
+     addi $22 $0 13
+     slt $25 $9 $22
+     srl $26 $9 31
+     bne $26 $0 naoe 
+     addi $2 $0 5
+     syscall
+     add $10 $0 $2#ano
+     srl $27 $10 31
+     bne $27 $0 naoe
+     beq $25 $0 naoe
+     
+     addi $11 $0 2
+     addi $12 $0 8
+     addi $18 $0 'B'
+     
+     
+     
+     beq $9 $11 veridiafev
+     jal verificanormal #chamada da função
+     addi $2 $0 10
+     syscall
+
+##############################      
+ veridiafev: jal bissexto  #chamada da função bissexto 
+             beq $17 $18 ver2
+             j nbise
+        ver2: addi $19 $0 30
+              slt $19 $8 $19
+              bne $19 $0 imprimefev
+              j naoe
+   imprimefev:addi $4 $0 1#valida
+              addi $2 $0 1
+              syscall
+              addi $2 $0 10
+              syscall
+     naoe: addi $4 $0 0#não válida                       
+           addi $2 $0 1
+           syscall
+           addi $2 $0 10
+           syscall
+     nbise:addi $19 $0 29
+           slt $19 $8 $19
+           bne $19 $0 imprimefev
+           j naoe
+       
+##############################          
+             
+ bissexto: addi $13 $0 10
+           addi $14 $0 100 
+           addi $6 $0 4
+           div $10 $13
+           mfhi $15
+           beq $15 $0 if1
+           div $10 $6 
+           mfhi $6
+           beq $6 $0 lil
+           j lih
+           
+       if1:div $10 $14
+           mfhi $16
+           
+           
+       iff: addi $28 $0 400   
+            div $10 $28
+            mfhi $7
+            beq $7 $0 lil
+            j lih
+            
+        lil:addi $17 $0 'B'                             
+            jr $31 
+        lih:addi $17 $0 'N'
+            jr $31     
+                                 
+                                                     
+ verificanormal: div $9 $12
+                 mfhi $20 
+                 mflo $21 
+                 add $20 $20 $21
+                 andi $20 $20 1 
+                 beq $20 $0 verdia30
+                 j verdia31
+        verdia30:addi $19 $0 31
+                 slt $19 $8 $19
+                 bne $19 $0 imprimefev
+                 j naoe       
+        verdia31:addi $19 $0 32
+                 slt $19 $8 $19
+                 bne $19 $0 imprimefev         
+                 j naoe                                                                                            
+                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                                                 

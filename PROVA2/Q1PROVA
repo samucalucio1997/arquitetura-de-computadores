@@ -1,0 +1,41 @@
+.data
+.word 0,0,0,0,0,0
+
+.text
+main:addi $8 $0 0
+     addi $9 $0 6
+     lui $25 0x1001
+ for: beq $8 $9 sai
+      
+      addi $2 $0 5
+      syscall
+      bne $2 $0 ver
+ ver: srl $10 $2 31
+      beq $10 $0 insere
+      j for
+      
+ insere: sw $2 0($25)    
+         addi $25 $25 4
+         addi $8 $8 1
+         j for
+    sai: addi $8 $0 6    
+         addi $9 $0 0
+         addi $25 $25 -4
+    for1: beq $8 $9 sai1
+      
+          lw $4 0($25) 
+          bne $4 $0 imp
+          j incre
+          
+      imp:addi $2 $0 1
+          syscall 
+          addi $4 $0 ' '
+          addi $2 $0 11
+          syscall   
+          
+    incre:addi $25 $25 -4
+          addi $8 $8 -1
+          j for1
+    sai1:addi $2 $0 10
+        syscall     
+         

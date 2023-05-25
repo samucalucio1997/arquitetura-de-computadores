@@ -1,0 +1,66 @@
+.data
+     ar1:
+       .align 2 
+       .space 40
+.text
+main: addi $10 $0 0
+      addi $9 $0 10
+      addi $25 $0 0
+  for: beq $10 $9 sai0
+    
+       addi $2 $0 5
+       syscall
+       sw $2 ar1($25)
+       
+       addi $25 $25 4
+       addi $10 $10 1
+       j for  
+  sai0: addi $8 $0 0
+       addi $25 $0 0
+       addi $13 $0 'p'
+  forf:beq $8 $10 sai1   
+       lw $4 ar1($25)
+       jal eprimo 
+       beq $16 $13 imprime
+       j fal
+imprime: add $4 $0 $4 
+         addi $2 $0 1
+         syscall
+         addi $4 $0 '-'
+         addi $2 $0 11
+         syscall
+         add $4 $0 $8
+         addi $2 $0 1
+         syscall
+         addi $4 $0 '\n'
+         addi $2 $0 11
+         syscall
+   fal:addi $8 $8 1
+       addi $25 $25 4
+       j forf
+  sai1:addi $2 $0 10
+       syscall                                                                                            
+                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+ eprimo:add $20 $0 $4
+       addi $22 $0 2
+       addi $21 $0 1
+       beq $20 $22 saip
+       beq $20 $0 sain
+       andi $11 $20 1
+       beq $11 $0 sain
+       addi $9 $0 3
+   forp:beq $9 $20 saip
+      
+       div $20 $9
+       mfhi $12
+       beq $12 $0 sain
+       addi $9 $9 2
+       j forp 
+   saip: addi $16 $0 'p'
+        jr $31
+        
+  sain:addi $16 $0 'n'
+       jr $31               
+      
+                            

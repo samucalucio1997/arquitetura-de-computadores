@@ -1,0 +1,49 @@
+.data
+   ar1:
+   .align 2
+   .space 400
+ 
+ .text
+ main:addi $2 $0 5
+      syscall
+      add $8 $0 $2 # endereco inicial
+      addi $2 $0 5
+      syscall
+      add $9 $0 $2  # qtd de colunas
+      addi $2 $0 5
+      syscall
+      add $10 $0 $2 # linha
+      addi $2 $0 5
+      syscall
+      add $11 $0 $2 # coluna 
+############################
+      addi $12 $0 0
+      addi $13 $0 0
+   for1:beq $12 $10 ver1
+         
+       for2:beq $13 $9 sai
+            addi $8 $8 4
+            addi $13 $13 1
+            j for2  
+                 
+      ver1: beq $13 $11 imprime#na 'ultima' linha pra chegar até a coluna pedida
+            addi $8 $8 4
+            addi $13 $13 1
+            j ver1     
+                             
+      sai: addi $12 $12 1
+           addi $13 $0 0 
+           j for1
+    imprime: add $4 $0 $8
+             addi $2 $0 34
+             syscall
+             addi $2 $0 10
+             syscall
+             
+                                                  
+
+             
+                                                                               
+                                                                                                                                                                                                                                             
+                                                                                                                                                 
+                 
